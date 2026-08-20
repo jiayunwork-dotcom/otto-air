@@ -42,7 +42,7 @@ func Solve(in Input) (Result, error) {
 	etaHeat, etaWork := efficiency(in.Qin, qOut, wNet)
 	mep := meanEffectivePressure(wNet, states[0].V, states[1].V)
 	area := closedAreaFor(g, in, states)
-	return Result{
+	return fillResult(Result{
 		R:        in.R,
 		Gamma:    in.Gamma,
 		Intake:   in.Intake,
@@ -58,5 +58,5 @@ func Solve(in Input) (Result, error) {
 		EtaClose: ClosedFormEfficiency(in.R, in.Gamma),
 		MEP:      mep,
 		Area:     area,
-	}, nil
+	}), nil
 }
