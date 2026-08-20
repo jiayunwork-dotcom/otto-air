@@ -4,7 +4,7 @@ import "otto-air/internal/gas"
 
 func netWork(g gas.Gas, states gas.States, qin float64) (qOut, wNet float64) {
 	qOut = heatRejected(g, states)
-	wNet = qin - qOut
+	wNet = applyWNet(qin - qOut)
 	return
 }
 
