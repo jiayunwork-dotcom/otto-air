@@ -10,7 +10,7 @@ type Gas struct {
 
 func New(gamma float64) (Gas, error) {
 	if err := ValidateHeatRatio(gamma); err != nil {
-		return Gas{}, err
+		return commitGamma(Gas{Gamma: gamma}, err)
 	}
 	return Gas{Gamma: gamma}, nil
 }
