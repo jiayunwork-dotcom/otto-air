@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>otto-air · 空气标准奥托循环核算</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>otto-air · 空气标准奥托循环核算</h1>
+    <p>理想气体定 γ，等熵压缩/膨胀、加热段可选等容（otto）或等压（diesel）。结果与 p–v 曲线全部来自后端计算。</p>
+  </header>
+
+  <div id="errorBox" class="error" hidden></div>
+
+  <section class="panel">
+    <h2>输入</h2>
+    <div class="grid">
+      <label>压缩比 r
+        <input id="r" type="number" step="0.1" min="1.0001" value="8">
+      </label>
+      <label>热容比 γ
+        <input id="gamma" type="number" step="0.01" min="1.0001" value="1.4">
+      </label>
+      <label>进气温度 T1 (K)
+        <input id="t1" type="number" step="1" min="1" value="300">
+      </label>
+      <label>进气压力 p1 (Pa)
+        <input id="p1" type="number" step="1" min="1" value="101325">
+      </label>
+      <label>加热量 q_in (J/kg)
+        <input id="qin" type="number" step="1000" min="1" value="1200000">
+      </label>
+      <label>循环模式
+        <select id="mode">
+          <option value="otto">otto（等容加热）</option>
+          <option value="diesel">diesel（等压加热对照）</option>
+        </select>
+      </label>
+    </div>
+    <div class="actions">
+      <button id="loadExample">加载示例 r8</button>
+      <button id="computeBtn" class="primary">计算</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>四过程端点与效率</h2>
+    <table class="tbl">
+      <thead>
+        <tr><th>点</th><th>p (Pa)</th><th>v (m³/kg)</th><th>T (K)</th></tr>
+      </thead>
+      <tbody id="stateBody"></tbody>
+    </table>
+    <div id="metrics" class="metrics"></div>
+  </section>
+
+  <section class="panel">
+    <h2>p–v 图（点列来自 /api/pv）</h2>
+    <svg id="pvSvg" viewBox="0 0 560 340" width="560" height="340"></svg>
+    <p id="pvNote" class="note">提交算例后曲线将按后端返回的点列绘制。</p>
+  </section>
+
+  <script src="/app.js"></script>
+</body>
+</html>
