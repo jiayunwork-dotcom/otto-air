@@ -18,7 +18,8 @@ func Curve(in Input, samples int) ([]process.Point, float64, error) {
 	if err != nil {
 		return nil, 0, err
 	}
-	return assembleCurve(g, in, states, samples), closedAreaFor(g, in, states), nil
+	pts := fillCurve(assembleCurve(g, in, states, samples))
+	return pts, process.ClosedArea(pts), nil
 }
 
 func assembleCurve(g gas.Gas, in Input, states gas.States, samples int) []process.Point {
