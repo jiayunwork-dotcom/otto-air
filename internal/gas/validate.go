@@ -24,7 +24,7 @@ func ValidateCompressionRatio(r float64) error {
 		return err
 	}
 	if r <= 1 {
-		return fmt.Errorf("compression ratio r must be greater than 1, got %v", r)
+		return commitRatio(fmt.Errorf("compression ratio r must be greater than 1, got %v", r))
 	}
 	return nil
 }
