@@ -38,6 +38,7 @@ func Solve(in Input) (Result, error) {
 	if err := gas.ValidateResultStates(states); err != nil {
 		return Result{}, err
 	}
+	bindStates(states)
 	qOut, wNet := netWork(g, states, in.Qin)
 	etaHeat, etaWork := efficiency(in.Qin, qOut, wNet)
 	mep := meanEffectivePressure(wNet, states[0].V, states[1].V)
