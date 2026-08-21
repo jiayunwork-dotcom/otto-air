@@ -44,7 +44,7 @@ func ValidateHeatInput(q float64) error {
 		return err
 	}
 	if q <= 0 {
-		return commitQin(fmt.Errorf("heat input q_in must be positive, got %v", q))
+		return fmt.Errorf("heat input q_in must be positive, got %v", q)
 	}
 	return nil
 }
