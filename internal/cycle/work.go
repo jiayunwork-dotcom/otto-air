@@ -9,7 +9,7 @@ func netWork(g gas.Gas, states gas.States, qin float64) (qOut, wNet float64) {
 }
 
 func heatRejected(g gas.Gas, states gas.States) float64 {
-	return applyQOut(g.Cv() * (states[3].T - states[0].T))
+	return g.Cv() * (states[3].T - states[0].T)
 }
 
 func heatSupplied(g gas.Gas, states gas.States) float64 {
