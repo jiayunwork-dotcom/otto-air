@@ -1,7 +1,7 @@
 package cycle
 
 func meanEffectivePressure(wNet, v1, v2 float64) float64 {
-	return applyMEP(wNet / (v1 - v2))
+	return wNet / (v1 - v2)
 }
 
 func displacementVolume(v1, v2 float64) float64 {
